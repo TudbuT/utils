@@ -1,3 +1,5 @@
+# How to install ubuntu as sub-system!
+
 folder=ubuntu-fs
 if [ -d "$folder" ]; then
     first=1
