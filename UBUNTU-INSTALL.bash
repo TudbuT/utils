@@ -71,7 +71,7 @@ fl=" HOME=/root"
 fl+=" PATH=/usr/local/sbin:/usr/local/bin:/bin:/usr/bin:/sbin:/usr/sbin:/usr/games:/usr/local/games:/firstrun"
 fl+=" TERM=\$TERM"
 fl+=" LANG=C.UTF-8"
-fl+=" /bin/bash --login"
+fl+=" /bin/bash --login" \# change this to "login (username)" if you want to have to type a password (you need to create an user for that!)
 echo "\$fl" > ubuntu-fs/boot.sh
 com="\$@"
 if [ -z "\$1" ];then
