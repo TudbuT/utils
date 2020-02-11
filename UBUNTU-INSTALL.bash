@@ -73,6 +73,7 @@ cat > $bin <<- EOM
 #!/bin/bash
 cd \$(dirname \$0)
 command="sudo chroot ./ubuntu-fs /bin/bash /boot.sh"
+sudo mount -o bind /dev ./ubuntu-fs/dev
 fl="mount -t proc proc /proc;" 
 fl+=" HOME=/root"
 fl+=" PATH=/usr/local/sbin:/usr/local/bin:/bin:/usr/bin:/sbin:/usr/sbin:/usr/games:/usr/local/games:/firstrun"
