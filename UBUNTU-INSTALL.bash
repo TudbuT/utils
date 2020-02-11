@@ -38,11 +38,21 @@ mkdir -p binds
 echo "setting up"
 bin=start-ubuntu.sh
 sudo chmod 777 ubuntu-fs
-sudo chroot ./ubuntu-fs /bin/apt-get clean
-sudo chroot ./ubuntu-fs /bin/mv /var/lib/apt/lists /var/lib/apt/lists.old
-sudo chroot ./ubuntu-fs /bin/mkdir -p /var/lib/apt/lists/partial
-sudo chroot ./ubuntu-fs /bin/apt-get clean
-sudo chroot ./ubuntu-fs /bin/apt-get update
+fl=" HOME=/root"
+fl+=" PATH=/usr/local/sbin:/usr/local/bin:/bin:/usr/bin:/sbin:/usr/sbin:/usr/games:/usr/local/games"
+fl+=" TERM=\$TERM"
+fl+=" LANG=C.UTF-8"
+fl+=" /bin/bash /firstrun/2.sh"
+echo "\$fl" > ./ubuntu-fs/firstrun/1.sh
+firstrun="
+/bin/apt-get clean
+/bin/mv /var/lib/apt/lists /var/lib/apt/lists.old
+/bin/mkdir -p /var/lib/apt/lists/partial
+/bin/apt-get clean
+/bin/apt-get update
+"
+
+echo "\$firstrun" > ./ubuntu-fs/firstrun/2.sh
 echo "writing launch script"
 cat > $bin <<- EOM
 #!/bin/bash
