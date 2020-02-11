@@ -8,24 +8,24 @@ fi
 tarball="ubuntu.tar.gz"
 if [ "$first" != 1 ];then
     if [ ! -f $tarball ]; then
-	echo "downloading ubuntu-image"
-	case `dpkg --print-architecture` in
-	aarch64)
-	    archurl="arm64" ;;
-	arm)
-	    archurl="armhf" ;;
-	armhf)
-	    archurl="armhf" ;;
-	amd64)
-	    archurl="amd64" ;;
-	i*86)
-	    archurl="i386" ;;
-	x86_64)
-	    archurl="amd64" ;;
-	*)
-	    echo "unknown architecture"; exit 1 ;;
-	esac
-	wget "https://partner-images.canonical.com/core/disco/current/ubuntu-disco-core-cloudimg-${archurl}-root.tar.gz" -O $tarball
+    echo "downloading ubuntu-image"
+    case `dpkg --print-architecture` in
+    aarch64)
+        archurl="arm64" ;;
+    arm)
+        archurl="armhf" ;;
+    armhf)
+        archurl="armhf" ;;
+    amd64)
+        archurl="amd64" ;;
+    i*86)
+        archurl="i386" ;;
+    x86_64)
+        archurl="amd64" ;;
+    *)
+        echo "unknown architecture"; exit 1 ;;
+    esac
+    wget "https://partner-images.canonical.com/core/disco/current/ubuntu-disco-core-cloudimg-${archurl}-root.tar.gz" -O $tarball
     fi
     cur=`pwd`
     mkdir -p "$folder"
@@ -41,6 +41,7 @@ echo "setting up"
 bin=start-ubuntu.sh
 sudo chmod 777 ubuntu-fs
 sudo chmod 777 ubuntu-fs/*
+sudo mount -o bind /dev ./ubuntu-fs/dev
 mkdir ./ubuntu-fs/firstrun
 fl="HOME=/root"
 fl+=" PATH=/usr/local/sbin:/usr/local/bin:/bin:/usr/bin:/sbin:/usr/sbin:/usr/games:/usr/local/games"
@@ -67,7 +68,8 @@ cat > $bin <<- EOM
 #!/bin/bash
 cd \$(dirname \$0)
 command="sudo chroot ./ubuntu-fs /bin/bash /boot.sh"
-fl="mount -t proc proc /proc; HOME=/root"
+fl="mount -t proc proc /proc;" 
+fl+=" HOME=/root"
 fl+=" PATH=/usr/local/sbin:/usr/local/bin:/bin:/usr/bin:/sbin:/usr/sbin:/usr/games:/usr/local/games:/firstrun"
 fl+=" TERM=\$TERM"
 fl+=" LANG=C.UTF-8"
