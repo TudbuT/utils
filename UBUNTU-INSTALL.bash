@@ -67,8 +67,7 @@ cat > $bin <<- EOM
 #!/bin/bash
 cd \$(dirname \$0)
 command="sudo chroot ./ubuntu-fs /bin/bash /boot.sh"
-fl="mount -t proc proc /proc
-HOME=/root"
+fl="mount -t proc proc /proc; HOME=/root"
 fl+=" PATH=/usr/local/sbin:/usr/local/bin:/bin:/usr/bin:/sbin:/usr/sbin:/usr/games:/usr/local/games:/firstrun"
 fl+=" TERM=\$TERM"
 fl+=" LANG=C.UTF-8"
