@@ -1,4 +1,9 @@
+###
 # How to install ubuntu as sub-system!
+#
+# It is common, that you will not be able to run the subSystem in a virtual tty, 
+# so some commands (like sudo) require the -S argument!
+###
 
 folder=ubuntu-fs
 if [ -d "$folder" ]; then
