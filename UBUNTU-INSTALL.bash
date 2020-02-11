@@ -38,28 +38,35 @@ mkdir -p binds
 echo "setting up"
 bin=start-ubuntu.sh
 sudo chmod 777 ubuntu-fs
-fl=" HOME=/root"
+sudo chmod 777 ubuntu-fs/*
+mkdir ./ubuntu-fs/firstrun
+fl="HOME=/root"
 fl+=" PATH=/usr/local/sbin:/usr/local/bin:/bin:/usr/bin:/sbin:/usr/sbin:/usr/games:/usr/local/games"
 fl+=" TERM=\$TERM"
 fl+=" LANG=C.UTF-8"
-fl+=" /bin/bash /firstrun/2.sh"
-echo "\$fl" > ./ubuntu-fs/firstrun/1.sh
+fl+=" /bin/bash /firstrun/firstrun2.sh>/firstrun/firstrun2log.txt.log"
+echo "$fl" > ./ubuntu-fs/firstrun/firstrun1.sh
 firstrun="
 /bin/apt-get clean
-/bin/mv /var/lib/apt/lists /var/lib/apt/lists.old
-/bin/mkdir -p /var/lib/apt/lists/partial
+echo \"Cleaned!\"
+cd /var/lib/apt
 /bin/apt-get clean
+/bin/rm -rf lists
+/bin/mkdir -p lists/partial
+/bin/apt-get clean
+echo \"Cleaned!\"
 /bin/apt-get update
 "
+echo "$firstrun" > ./ubuntu-fs/firstrun/firstrun2.sh
+sudo chroot ./ubuntu-fs /bin/bash /firstrun/firstrun1.sh
 
-echo "\$firstrun" > ./ubuntu-fs/firstrun/2.sh
 echo "writing launch script"
 cat > $bin <<- EOM
 #!/bin/bash
 cd \$(dirname \$0)
 command="sudo chroot ./ubuntu-fs /bin/bash /boot.sh"
 fl=" HOME=/root"
-fl+=" PATH=/usr/local/sbin:/usr/local/bin:/bin:/usr/bin:/sbin:/usr/sbin:/usr/games:/usr/local/games"
+fl+=" PATH=/usr/local/sbin:/usr/local/bin:/bin:/usr/bin:/sbin:/usr/sbin:/usr/games:/usr/local/games:/firstrun"
 fl+=" TERM=\$TERM"
 fl+=" LANG=C.UTF-8"
 fl+=" /bin/bash --login"
