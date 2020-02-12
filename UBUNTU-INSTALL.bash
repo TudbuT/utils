@@ -44,6 +44,7 @@ fi
 mkdir -p binds
 echo "setting up"
 bin=start-ubuntu.sh
+mkdir ubuntu-fs/dev
 sudo chmod 777 ubuntu-fs
 sudo chmod 777 ubuntu-fs/*
 sudo mount -o bind /dev ./ubuntu-fs/dev
