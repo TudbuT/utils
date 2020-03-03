@@ -1,0 +1,39 @@
+<style>
+	menu /* not needed */ {
+		top: 0;
+		left: 0;
+		position: sticky;
+	}
+	
+	
+	dropdown {
+		display: block;
+		background-color: #444444;
+		text-align: center;
+		z-index: 100;
+		width: 10em;
+		color: #eeeeee;
+	}
+	dropdown content {
+		display: none;
+		z-index: 101;
+	}
+
+	dropdown:hover content {
+		display: block;
+	}
+	
+	a {
+		color: inherit;
+	}
+</style>
+
+<menu>
+	<dropdown>
+		Menu
+		<content>
+			<a href="https://google.com">Google</a><br/>
+			<a href="https://youtube.com">YouTube</a>
+		</content>
+	</dropdown>
+</menu>
