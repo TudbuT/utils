@@ -14,7 +14,7 @@ tarball="ubuntu.tar.gz"
 if [ "$first" != 1 ];then
     if [ ! -f $tarball ]; then
     echo "downloading ubuntu-image"
-    case `arch` in
+    case `dpkg --print-architecture` in
     aarch64)
         archurl="arm64" ;;
     arm)
