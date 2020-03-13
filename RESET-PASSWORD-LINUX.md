@@ -8,6 +8,7 @@
 - Type "passwd root{enter}"
 - Type "rootroot{enter}" (it will be invisible)
 - Type "rootroot{enter}" again
+- Type "touch /.autorelabel"
 - Type "/sbin/reboot -f{enter}"
 - Press the power button on your PC until the screen goes black
 - Restart
