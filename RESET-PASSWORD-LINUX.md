@@ -4,7 +4,7 @@
 - Replace "ro" with "rw"
 - Add "init=/bin/bash" at the end of the line
 - Press [Ctrl] + [x]
-- Wait for "bash <some number># " to show up
+- Wait for "bash {some number}# " to show up
 - Type "passwd root{enter}"
 - Type "rootroot{enter}" (it will be invisible)
 - Type "rootroot{enter}" again
