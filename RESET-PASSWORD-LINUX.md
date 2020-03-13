@@ -12,4 +12,4 @@
 - Type "/sbin/reboot -f{enter}"
 - Press the power button on your PC until the screen goes black
 - Restart
-- See, that is worked!
+- See, that is worked! Your root password is "rootroot", now!
