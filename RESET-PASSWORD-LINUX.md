@@ -1,8 +1,7 @@
 - Reboot/Boot while constantly pressing shift
 - Press [e]
 - Go to the line starting with "linux"
-- Replace "ro" with "rw"
-- Add "init=/bin/bash" at the end of the line
+- Add " rw init=/bin/bash" at the end of the line
 - Press [Ctrl] + [x]
 - Wait for "bash {some number}# " to show up
 - Type "passwd root{enter}"
