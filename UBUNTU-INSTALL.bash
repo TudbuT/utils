@@ -28,7 +28,21 @@ if [ "$first" != 1 ];then
     x86_64)
         archurl="amd64" ;;
     *)
-        echo "unknown architecture"; exit 1 ;;
+        case `arch` in
+        aarch64)
+            archurl="arm64" ;;
+        arm)
+            archurl="armhf" ;;
+        armhf)
+            archurl="armhf" ;;
+        amd64)
+            archurl="amd64" ;;
+        i*86)
+            archurl="i386" ;;
+        x86_64)
+            archurl="amd64" ;;
+        *)
+            echo "unknown architecture"; exit 1 ;;
     esac
     wget "https://partner-images.canonical.com/core/disco/current/ubuntu-disco-core-cloudimg-${archurl}-root.tar.gz" -O $tarball
     fi
