@@ -10,7 +10,6 @@
 - Type "rootroot{enter}" again
 - Type "touch /.autorelabel"
 - Type "/sbin/reboot -f{enter}"
-- Press the power button on your PC until the screen goes black
-- Restart (can take pretty long, however).
-- (Eventually, you need to do that 2 times)
+- The PC will restart (can take pretty long, however).
+- (Eventually, you need to restart it again (manually), after that)
 - See, that is worked! Your root password is "rootroot", now!
