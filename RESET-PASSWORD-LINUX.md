@@ -1,14 +1,29 @@
-- Reboot/Boot while constantly pressing shift
-- Press [e]
-- Go to the line starting with "linux"
-- Add " rw init=/bin/bash" at the end of the line
-- Press [Ctrl] + [x]
-- Wait for "bash {some number}# " to show up
-- Type "passwd root{enter}"
-- Type "rootroot{enter}" (it will be invisible)
-- Type "rootroot{enter}" again
-- Type "touch /.autorelabel"
-- Type "/sbin/reboot -f{enter}"
-- The PC will restart (can take pretty long, however).
-- (Eventually, you need to restart it again (manually), after that)
-- See, that is worked! Your root password is "rootroot", now!
+- Mothod one (hard, but nothing but a keyboard required)
+  - Reboot/Boot while constantly pressing shift
+  - Press [e]
+  - Go to the line starting with "linux"
+  - Add " rw init=/bin/bash" at the end of the line
+  - Press [Ctrl] + [x]
+  - Wait for "bash {some number}# " to show up
+  - Type "passwd root{enter}"
+  - Type "rootroot{enter}" (it will be invisible)
+  - Type "rootroot{enter}" again
+  - Type "touch /.autorelabel"
+  - Type "/sbin/reboot -f{enter}"
+  - The PC will restart (can take pretty long, however).
+  - (Eventually, you need to restart it again (manually), after that)
+  - See, that is worked! Your root password is "rootroot", now!
+
+- Method two (easy, but you need an usb stick you can write to)
+  - Install Lubuntu on the usb stick (If on linux, just type `curl http://cdimage.ubuntu.com/lubuntu/releases/16.04/release/lubuntu-16.04.3-desktop-amd64.iso | dd of=/dev/sd{{{abcd...}}}` (Replace {{{abcd...}}} with the entry of your usb drive)
+  - Boot from that stick on the machine you want to reset the password of
+  - Select 'Try Lubuntu'
+  - Wait for it to boot
+  - Open up the file explorer
+  - To the left, select the main drive with the linux OS
+  - Copy the mount point (the address bar)
+  - Open up a terminal
+  - Type `chroot {{{the mount point here}}}`
+  - Type `passwd root`
+  - Type your new password two times
+  - You are done. Reboot and see that it worked!
