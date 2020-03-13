@@ -15,7 +15,7 @@
   - See, that is worked! Your root password is "rootroot", now!
 
 - Method two (easy, but you need an usb stick you can write to)
-  - Install Lubuntu on the usb stick (If on linux, just type `curl http://cdimage.ubuntu.com/lubuntu/releases/16.04/release/lubuntu-16.04.3-desktop-amd64.iso | dd of=/dev/sd{{{abcd...}}}` (Replace {{{abcd...}}} with the entry of your usb drive)
+  - Install Lubuntu on the usb stick (If on linux, just type `curl http://cdimage.ubuntu.com/lubuntu/releases/16.04/release/lubuntu-16.04.3-desktop-amd64.iso | dd of=/dev/sd{{{abcd...}}}` (Replace {{{abcd...}}} with the entry of your usb drive))
   - Boot from that stick on the machine you want to reset the password of
   - Select 'Try Lubuntu'
   - Wait for it to boot
