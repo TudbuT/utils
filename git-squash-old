@@ -1,0 +1,26 @@
+#!/bin/sh
+
+# This script takes one argument: The commit up to which to squash.
+# The git repo will be modified so that:
+#   A - B - C - D - E
+#           ↑
+#        argument
+# becomes:
+#   A - D - E
+# where A will have the changes of A, B, and C in one commit, and D and E will be 
+# identical to the original D and E.
+
+CURRENT="$(git rev-parse --abbrev-ref HEAD)"
+ORIGIN="$(git log --oneline --no-abbrev | tail -n1 | cut -d ' ' -f 1)"
+PREV="$(git log --oneline --no-abbrev | grep -B 1 $1 | head -n1 | cut -d ' ' -f 1)"
+git branch squash-rewrite
+git checkout squash-rewrite
+git reset --hard $1
+git reset $ORIGIN
+git add .
+git commit --amend -am "[DELETE HISTORY] squash $ORIGIN .. $1"
+NEWBASE="$(git log --oneline --no-abbrev | cut -d ' ' -f 1)"
+git checkout $CURRENT
+git replace --graft $PREV $NEWBASE
+git filter-branch
+git branch -d squash-rewrite
